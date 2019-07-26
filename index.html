@@ -21,16 +21,22 @@
     </footer>
 
     <script>
-        var keys={
+        keys={
             "0":{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
             "1":{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
             "2":{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},  //其实数组和对象本质是一样的
             "length":3
         }      //数组里面有数组
-        var hash = {
+        hash = {
             "q":'qq.com',"w":'weibo.com',"e":'ele.me',"r":'renren.com',"y":'youtbe.com',"u":'uc.com',"i":'aiqiyi.com',"o":'opera.com',
             "p":undefined,"a":'acfun.tv',"s":'sohu.com',"z":'zhihu.com',"m":'www.mcdonalds.cn/'   //这个hash不是数组，不需要加length
         }
+        //去除localStorage中的zzz对应的hash
+        hashInlocalStorage = JSON.parse(localStorage.getItem('zzz')||'null')
+        if(hashInlocalStorage){
+            hash = hashInlocalStorage      //读取进度（优先读取之前编辑过的hash）
+        }
+
         //遍历keys   生成kbd标签
         index = 0
         while( index < keys["length"]){          //index：0   1   2
@@ -42,7 +48,16 @@
             kbdxxxx = document.createElement("kbd") 
             kbdxxxx.textContent = row[index2]      //kbd里面的文字内容对应每一行的数组
             buttonxxxx = document.createElement('button')
-            buttonxxxx.textContent = 'E'
+                //编辑hash  
+            buttonxxxx.textContent = '编辑'
+            buttonxxxx.id = row[index2]   //给button一个idname
+            buttonxxxx.onclick = function(xzkjcnxlkcjlk){
+                key = xzkjcnxlkcjlk['target']['id']        //监听点击事件q w e r  意思是点击的是key,找到里面的value对应的id 这里hash变成了元素（元素、数组都可以是hash，只要符合条件）  target指的是用户点的按钮
+                x = prompt('给我一个网址')                  //提示用户给一个网址 把这个网址保存到x里面   qq.com等
+                hash[key] = x                             //hash变更    把hash的key等于上一步的网址
+                localStorage.setItem('zzz',JSON.stringify(hash))    //localStorage表示浏览器里面的桶，里面存的的是编辑后的hash,备份的作用，下次编辑时直接从刚好的上次开始编辑
+                console.log(hash)
+            }
             kbdxxxx.appendChild(buttonxxxx) 
             divxxxx.appendChild(kbdxxxx)        //生成的kbd必须马上放入div
             index2 = index2 + 1
