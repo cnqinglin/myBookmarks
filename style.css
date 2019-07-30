@@ -5,9 +5,19 @@
 a{
     text-decoration: none;
 }
+body{
+    height: 100vh;
+    background: grey url(./images/wall-min.jpg) no-repeat center center;
+    background-size: cover;
+}
 main{
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+
 kbd{
     border: 1px solid red;
     width: 4em;
@@ -16,21 +26,53 @@ kbd{
     text-transform: uppercase;
     position: relative;
 }
-#mainxxxx > div > kbd > button{
+kbd > button{
     position: absolute;
     bottom: 0px ;
     right: 0px ;
     display: none;
 }
-#mainxxxx > div > kbd:hover > button{
+kbd:hover > button{
     display: inline-block;
 }
-#mianxxxx{
+#main{
     display: inline-block;
+    background: rgba(100,100,100,0.2);
+    border-radius: 10px;
 }
-main > mainxxxx:nth-child(2){
-    margin-left: 2em;
+#main > div:nth-child(2){
+    margin-left: -22px;
 }
-main > mainxxxx:nth-child(3){
-    margin-left: 4em;
+#main > div:nth-child(3){
+    margin-left: -80px;
+}
+.key{
+    width:50px;
+    height:40px;
+    background: linear-gradient(to bottom, #292929 0%,#111111 100%); 
+    border: 1px solid #373737;
+    border-radius:6px;
+    box-shadow: 0 0 0px 1px #1A1B1C,0 0 0px 2px #1F2020,0 3px 0px 2px #080808;
+    color: #C5C5C5;
+    font-size:16px ;
+    font-family: Helvetica;
+    position: relative;
+}  
+.row{
+    margin: 20px;
+}
+.row .key{
+    margin: 0 10px;
+}
+.key > .image{
+    position: absolute;
+    width: 16px;
+    height: 16px ;
+    left: 4px;
+    bottom: 2px;
+}
+kbd span.text{
+    position: absolute;
+    left: 4px ;
+    top: 2px;
 }
